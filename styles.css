@@ -4,17 +4,10 @@
 }
 
 body {
-    background-color: #a7cdff;
+    background-color: #cae1ff;
 }
 
 .grid {
     display: flex;
     flex-wrap: wrap;
-    background-color: #a7daee;
-    margin: 150px auto;
-}
-
-.grid-square {
-    border: 1px solid;
-    background-color: #ffffff;
 }
