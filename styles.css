@@ -11,3 +11,19 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
+
+.size {
+    display:flex;
+    margin: 25px auto;
+}
+
+#title {
+    display: flex;
+    justify-content: center;
+}
+
+#input-error {
+    color: #ff0000;
+    display: flex;
+    justify-content: center;
+}
