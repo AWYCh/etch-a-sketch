@@ -1,4 +1,5 @@
 *{
+    font-family:Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -10,21 +11,33 @@ body {
 .frame {
     display:flex;
     background-color: #ff0000;
-    margin: 25px auto;
+    margin: 15px auto;
     width: 700px;
+    height: 700px;
     border-radius: 35px;
+    justify-content: center;
+    align-items: center;
 }
 
 .grid {
     display: flex;
     flex-wrap: wrap;
+    border: 1px solid #3f0000;
 }
 
 .buttons {
     display: flex;
-    margin: 25px auto;
+    margin: 20px auto;
     justify-content: center;
     gap: 10px;
+}
+
+.buttons button {
+    font-size: 14px;
+    width: 90px;
+    height: 30px;
+    border: 2px solid #000000;
+    border-radius: 15px;
 }
 
 #title {
