@@ -4,7 +4,15 @@
 }
 
 body {
-    background-color: #cae1ff;
+    background-color: #e2efff;
+}
+
+.frame {
+    display:flex;
+    background-color: #ff0000;
+    margin: 25px auto;
+    width: 700px;
+    border-radius: 35px;
 }
 
 .grid {
@@ -12,9 +20,11 @@ body {
     flex-wrap: wrap;
 }
 
-.size {
-    display:flex;
+.buttons {
+    display: flex;
     margin: 25px auto;
+    justify-content: center;
+    gap: 10px;
 }
 
 #title {
@@ -22,8 +32,8 @@ body {
     justify-content: center;
 }
 
-#input-error {
-    color: #ff0000;
+#input-area {
+    color: #000000;
     display: flex;
     justify-content: center;
 }
