@@ -27,6 +27,22 @@ function activateColor(colorChoice) {
     activeColor = colorChoice;
 }
 
+function activateButton (activeColor) {
+    if (activeColor==='random') {
+        randomButton.classList.add('active');
+        blackButton.classList.remove('active');
+        eraserButton.classList.remove('active')
+    } else if (activeColor==='black') {
+        blackButton.classList.add('active');
+        randomButton.classList.remove('active');
+        eraserButton.classList.remove('active')
+    } else if (activeColor==='white') {
+        eraserButton.classList.add('active');
+        blackButton.classList.remove('active');
+        randomButton.classList.remove('active')
+    }  
+}
+
 function changeColor (event) {
     if(event.type === "mouseover" && !mouseDown) return
         if (activeColor=='random') {
@@ -64,8 +80,8 @@ function changeSize() {
      if (input > 1 && input <= 100) {
         removeGrid();
         createGrid(input);
-        area.textContent = `Sketch area is ${input} x ${input}`;
-        area.style.color = "#000000";
+        sizeButton.textContent = `${input} x ${input}`;
+        area.textContent = "";
         activeSize = input;
      } else {
         area.textContent = "Please enter a number between 1 and 101";
@@ -79,8 +95,9 @@ function clearGrid() {
 }
 
 createGrid(activeSize);
+activateButton(activeColor);
 sizeButton.addEventListener("click", changeSize);
-blackButton.addEventListener("click", () => {activateColor('black')});
-randomButton.addEventListener("click", () => {activateColor('random')});
-eraserButton.addEventListener("click", () => {activateColor('white')});
+blackButton.addEventListener("click", () => {activateColor('black');activateButton('black')});
+randomButton.addEventListener("click", () => {activateColor('random');activateButton('random')});
+eraserButton.addEventListener("click", () => {activateColor('white');activateButton('white')});
 clearButton.addEventListener("click", clearGrid);

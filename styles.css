@@ -8,6 +8,10 @@ body {
     background-color: #e2efff;
 }
 
+h1 {
+    font-size: 40px;
+}
+
 .frame {
     display:flex;
     background-color: #ff0000;
@@ -22,7 +26,7 @@ body {
 .grid {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid #3f0000;
+    border: 0.5px solid #000000;
 }
 
 .buttons {
@@ -33,11 +37,17 @@ body {
 }
 
 .buttons button {
-    font-size: 14px;
-    width: 90px;
-    height: 30px;
+    font-size: 16px;
+    width: 100px;
+    height: 40px;
+    background-color: #ffffff;
     border: 2px solid #000000;
     border-radius: 15px;
+}
+
+button.active {
+    color: #ffffff;
+    background-color: #000000;
 }
 
 #title {
