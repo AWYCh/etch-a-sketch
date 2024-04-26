@@ -1,5 +1,3 @@
-//Implement a progressive darkening effect where each interaction darkens the square by 10%. 
-//The objective is to achieve a completely black square only ten interactions.
 const sizeButton = document.querySelector("#size");
 const blackButton = document.querySelector("#defaultColor");
 const randomButton = document.querySelector("#randomColor");
@@ -31,27 +29,39 @@ function activateButton (activeColor) {
     if (activeColor==='random') {
         randomButton.classList.add('active');
         blackButton.classList.remove('active');
+        darkenButton.classList.remove('active');
         eraserButton.classList.remove('active')
     } else if (activeColor==='black') {
         blackButton.classList.add('active');
         randomButton.classList.remove('active');
+        darkenButton.classList.remove('active');
         eraserButton.classList.remove('active')
     } else if (activeColor==='white') {
         eraserButton.classList.add('active');
         blackButton.classList.remove('active');
-        randomButton.classList.remove('active')
-    }  
+        randomButton.classList.remove('active');
+        darkenButton.classList.remove('active')
+    } else if (activeColor==='darken') {
+        darkenButton.classList.add('active');
+        randomButton.classList.remove('active');
+        blackButton.classList.remove('active');
+        eraserButton.classList.remove('active')
+    } 
 }
 
-function changeColor (event) {
-    if(event.type === "mouseover" && !mouseDown) return
+function changeColor (e) {
+    if(e.type === "mouseover" && !mouseDown) return
         if (activeColor=='random') {
-            event.target.style.backgroundColor = `rgb(${random(255)} ${random(255)} ${random(255)})`;
+            e.target.style.backgroundColor = `rgb(${random(255)} ${random(255)} ${random(255)})`;
         } else if (activeColor=='black') {
-            event.target.style.backgroundColor = "#000000";
+            e.target.style.backgroundColor = "#000000";
         } else if (activeColor=='white') {
-            event.target.style.backgroundColor = "#ffffff";
-        }  
+            e.target.style.backgroundColor = "#ffffff";
+        } else if (activeColor=='darken') {
+            e.target.style.backgroundColor = "rgb(0 0 0)";
+            if(e.target.style.opacity < 1) {
+            e.target.style.opacity = Number(e.target.style.opacity) + 0.1;
+        }}     
 }
 
 function createGrid(size) {
@@ -83,6 +93,8 @@ function changeSize() {
         sizeButton.textContent = `${input} x ${input}`;
         area.textContent = "";
         activeSize = input;
+     } else if (input === null) {
+        area.textContent = "";
      } else {
         area.textContent = "Please enter a number between 1 and 101";
         area.style.color = "#ff0000";
@@ -94,10 +106,24 @@ function clearGrid() {
     createGrid(activeSize);
 }
 
+sizeButton.textContent = `${activeSize} x ${activeSize}`;
 createGrid(activeSize);
 activateButton(activeColor);
 sizeButton.addEventListener("click", changeSize);
-blackButton.addEventListener("click", () => {activateColor('black');activateButton('black')});
-randomButton.addEventListener("click", () => {activateColor('random');activateButton('random')});
-eraserButton.addEventListener("click", () => {activateColor('white');activateButton('white')});
+blackButton.addEventListener("click", () => {
+    activateColor('black');
+    activateButton('black');
+})
+randomButton.addEventListener("click", () => {
+    activateColor('random');
+    activateButton('random');
+})
+eraserButton.addEventListener("click", () => {
+    activateColor('white');
+    activateButton('white');
+})
+darkenButton.addEventListener("click", () => {
+    activateColor('darken');
+    activateButton('darken');
+})
 clearButton.addEventListener("click", clearGrid);
