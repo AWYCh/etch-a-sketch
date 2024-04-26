@@ -9,15 +9,18 @@
 </head>
 <body>
     <h1 id="title">Etch-a-Sketch</h1>
+    <div class="sizeBar">
+        <input type="numeric" id="inputSize" placeholder="size" value="16"/>
+        <button id="size">Set Size</button>
+    </div>
     <div class ="buttons">
-        <button id="size"></button>
         <button id="defaultColor">Black</button>
         <button id="randomColor">Multicolor</button>
         <button id ="darken">Shade</button>
         <button id="eraser">Eraser</button>
         <button id="clear">Clear</button>
     </div>
-    <p id="input-area"></p>
+    <p id="error"></p>
     <div id="frame" class="frame">
         <div id ="grid" class="grid"></div> 
     </div>

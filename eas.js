@@ -4,6 +4,7 @@ const randomButton = document.querySelector("#randomColor");
 const darkenButton = document.querySelector("#darken");
 const eraserButton = document.querySelector("#eraser");
 const clearButton = document.querySelector("#clear");
+const inputSize = document.querySelector("#inputSize");
 
 let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
@@ -84,20 +85,17 @@ function removeGrid() {
     }
 }
 
-function changeSize() {
-    let input = prompt("Enter number of squares per side");
-    let area = document.querySelector("#input-area");
+function changeSize(input) {
+    let error = document.querySelector("#error");
      if (input > 1 && input <= 100) {
         removeGrid();
         createGrid(input);
-        sizeButton.textContent = `${input} x ${input}`;
-        area.textContent = "";
+        error.textContent = "";
         activeSize = input;
      } else if (input === null) {
-        area.textContent = "";
+        error.textContent = "";
      } else {
-        area.textContent = "Please enter a number between 1 and 101";
-        area.style.color = "#ff0000";
+        error.textContent = "Please enter a number between 1 and 101";
      }
 }
 
@@ -106,10 +104,14 @@ function clearGrid() {
     createGrid(activeSize);
 }
 
-sizeButton.textContent = `${activeSize} x ${activeSize}`;
 createGrid(activeSize);
 activateButton(activeColor);
-sizeButton.addEventListener("click", changeSize);
+sizeButton.addEventListener("click", () => {
+    changeSize(inputSize.value);
+})
+inputSize.addEventListener("change", () => {
+    changeSize(inputSize.value);
+})
 blackButton.addEventListener("click", () => {
     activateColor('black');
     activateButton('black');
