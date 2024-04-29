@@ -5,11 +5,14 @@
 }
 
 body {
-    background-color: #e2efff;
+    background-color: #aeffeb;
 }
 
-h1 {
-    font-size: 40px;
+#title {
+    font-size: 45px;
+    text-transform: uppercase;
+    color: #ffffff;
+    -webkit-text-stroke: 1.5px #000000;    
 }
 
 .frame {
@@ -45,6 +48,11 @@ h1 {
     margin: 20px auto;
     justify-content: center;
     align-items: center;
+    gap: 10px;
+}
+
+.pens {
+    display: flex;
     gap: 10px;
 }
 

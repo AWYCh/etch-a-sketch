@@ -1,10 +1,11 @@
 const sizeButton = document.querySelector("#size");
-const blackButton = document.querySelector("#defaultColor");
-const randomButton = document.querySelector("#randomColor");
+const blackButton = document.querySelector("#black");
+const randomButton = document.querySelector("#random");
 const darkenButton = document.querySelector("#darken");
 const eraserButton = document.querySelector("#eraser");
 const clearButton = document.querySelector("#clear");
 const inputSize = document.querySelector("#inputSize");
+const pens = document.querySelectorAll(".pens button");
 
 let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
@@ -27,26 +28,18 @@ function activateColor(colorChoice) {
 }
 
 function activateButton (activeColor) {
+    randomButton.classList.remove('active');
+    blackButton.classList.remove('active');
+    darkenButton.classList.remove('active');
+    eraserButton.classList.remove('active')
     if (activeColor==='random') {
         randomButton.classList.add('active');
-        blackButton.classList.remove('active');
-        darkenButton.classList.remove('active');
-        eraserButton.classList.remove('active')
     } else if (activeColor==='black') {
         blackButton.classList.add('active');
-        randomButton.classList.remove('active');
-        darkenButton.classList.remove('active');
-        eraserButton.classList.remove('active')
-    } else if (activeColor==='white') {
+    } else if (activeColor==='eraser') {
         eraserButton.classList.add('active');
-        blackButton.classList.remove('active');
-        randomButton.classList.remove('active');
-        darkenButton.classList.remove('active')
     } else if (activeColor==='darken') {
         darkenButton.classList.add('active');
-        randomButton.classList.remove('active');
-        blackButton.classList.remove('active');
-        eraserButton.classList.remove('active')
     } 
 }
 
@@ -55,8 +48,8 @@ function changeColor (e) {
         if (activeColor=='random') {
             e.target.style.backgroundColor = `rgb(${random(255)} ${random(255)} ${random(255)})`;
         } else if (activeColor=='black') {
-            e.target.style.backgroundColor = "#000000";
-        } else if (activeColor=='white') {
+            e.target.style.backgroundColor = "rgba(0 0 0)";
+        } else if (activeColor=='eraser') {
             e.target.style.backgroundColor = "#ffffff";
         } else if (activeColor=='darken') {
             e.target.style.backgroundColor = "rgb(0 0 0)";
@@ -112,20 +105,11 @@ sizeButton.addEventListener("click", () => {
 inputSize.addEventListener("change", () => {
     changeSize(inputSize.value);
 })
-blackButton.addEventListener("click", () => {
-    activateColor('black');
-    activateButton('black');
-})
-randomButton.addEventListener("click", () => {
-    activateColor('random');
-    activateButton('random');
-})
-eraserButton.addEventListener("click", () => {
-    activateColor('white');
-    activateButton('white');
-})
-darkenButton.addEventListener("click", () => {
-    activateColor('darken');
-    activateButton('darken');
+pens.forEach(button => {
+    button.addEventListener("click", (e) => {
+        let activeColor = (e.target.id);
+        activateColor(activeColor);
+        activateButton(activeColor);
+    })
 })
 clearButton.addEventListener("click", clearGrid);
